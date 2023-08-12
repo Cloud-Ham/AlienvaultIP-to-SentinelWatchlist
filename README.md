@@ -1,7 +1,5 @@
 # AlienvaultIP-to-SentinelWatchlist
 
-BETA Version: Awaiting deployment in 2nd Azure environment
-
 This repo will create automation to pull from Alienvault's reputation generic IPv4 address list [Available here](https://reputation.alienvault.com/reputation.generic). This is a bit overkill for the requirements, and I would generally advise looking into the "Threat Intelligence Upload Indicators API (Preview)" connector in Sentinel. Which if you'd like to review what's needed for that, I'd read through [this page](https://learn.microsoft.com/en-us/azure/databricks/dev-tools/app-aad-token#get-an-azure-ad-access-token).
 
 There were a couple of reasons I wanted to create this, and why it acts the way that it does:
