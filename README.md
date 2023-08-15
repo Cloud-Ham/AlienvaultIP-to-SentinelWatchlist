@@ -45,7 +45,7 @@ __CAUTION__: Deploying this terraform template after it's already been deployed 
 
 To provide all variables at runtime:
 ```
-terraform apply -auto-approve -var="rg_name=RESOURCE_GROUP_NAME" -var="deploy_location=DEPLOY_REGION" -var="subscription_id=SUBSCRIPTION_ID" -var="workspace_id=LOG_ANALYTICS_WORKSPACE_ID" -var="workspace_name=LOG_ANALYTICS_WORKSPACE_NAME" -var="watchlist_name=WATCHLIST_NAME"
+terraform apply -auto-approve -var="rg_name=RESOURCE_GROUP_NAME" -var="deploy_location=DEPLOY_REGION" -var="subscription_id=SUBSCRIPTION_ID" -var="workspace_id=LOG_ANALYTICS_WORKSPACE_ID" -var="watchlist_name=WATCHLIST_NAME"
 ```
 
 # Important information
@@ -54,6 +54,6 @@ This automation will destroy the watchlist and create a new one with the most cu
 
 # Known issues
 
-The AlienvaultIPList has a dummy value "999.999.999.999" in it. Nothing should ever match to it. The reason this exists is because I wanted to keep the steps of "Create Watchlist" and "Add item to watchlist" separate, mostly for troubleshooting purposes. It becomes easier to account for values being added watching loops and input/output for each loop. There is the possibility of deleting the dummy value after everything is done at the end of the logic app, but it adds in some more complexity (The Logic App would need to query the watchlist in Log Analytics, and then delete the item once it finds the GUID value)
+The watchlist created has a dummy value "999.999.999.999" in it. Nothing should ever match to it. The reason this exists is because I wanted to keep the steps of "Create Watchlist" and "Add item to watchlist" separate, mostly for troubleshooting purposes. It becomes easier to account for values being added watching loops and input/output for each loop. There is the possibility of deleting the dummy value after everything is done at the end of the logic app, but it adds in some more complexity (The Logic App would need to query the watchlist in Log Analytics, and then delete the item once it finds the GUID value)
 
-The Delay in the Logic App is set to 10 minutes. The Delay is implemented due to the fact that the Deletion step will be considered complete before the watchlist is actually completed, causing a conflict when it attempts to create the new watchlist. In testing, 5 minutes was too quick. 10 minutes did not fail.
+The Delay in the Logic App is set to 10 minutes. In testing where a watchlist existed and needed to be deleted, 5 minutes was too quick. 10 minutes did not fail.
