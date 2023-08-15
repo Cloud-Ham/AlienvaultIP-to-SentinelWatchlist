@@ -18,11 +18,6 @@ variable "workspace_id" {
     type = string
 }
 
-// Variable for Log Analytics Workspace Name
-variable "workspace_name" {
-    type = string
-}
-
 // Variable for Sentinel Watchlist Name
 variable "watchlist_name" {
     type = string

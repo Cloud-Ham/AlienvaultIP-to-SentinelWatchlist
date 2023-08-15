@@ -22,11 +22,7 @@ resource "local_file" "workflow" {
                         "unit": "Minute"
                     }
                 },
-                "runAfter": {
-                    "Watchlists_-_Delete_a_Watchlist": [
-                        "Succeeded"
-                    ]
-                },
+                "runAfter": {},
                 "type": "Wait"
             },
             "For_each": {

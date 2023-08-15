@@ -1,5 +1,7 @@
 # AlienvaultIP-to-SentinelWatchlist
 
+__Update 08/14/2023:__ Terraform no longer manages the Sentinel Watchlist. The Logic App now has a parallel job to delete an existing watchlist if it is present (Otherwise the parallel job errors). The watchlist name remains in the Terraform for the Logic App's workflow build.
+
 This repo will create automation to pull from Alienvault's reputation generic IPv4 address list [Available here](https://reputation.alienvault.com/reputation.generic). This is a bit overkill for the requirements, and I would generally advise looking into the "Threat Intelligence Upload Indicators API (Preview)" connector in Sentinel. Which if you'd like to review what's needed for that, I'd read through [this page](https://learn.microsoft.com/en-us/azure/databricks/dev-tools/app-aad-token#get-an-azure-ad-access-token).
 
 There were a couple of reasons I wanted to create this, and why it acts the way that it does:
@@ -20,7 +22,6 @@ Let me know if you run into any issues, and feel free to contribute.
 * Azure Function App (Windows, Node.JS, Javascript, Consumption)
 * Azure Function App Function (Parses the input)
 * Azure Logic App (Consumption), set to execute every 24 hours
-* (Through Terraform) Azure Sentinel Watchlist: AlienvaultIPList [This will be replaced at Logic App Execution]
 * (Through Logic App) Azure Sentinel Watchlist: AlienvaultIPList
 
 # How to deploy:
